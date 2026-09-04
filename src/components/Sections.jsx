@@ -77,13 +77,33 @@ export function HeroSection({ onExploreServices, onViewProjects }) {
   return (
     <section
       id="hero"
-      className="relative pt-10 pb-20 md:py-24 overflow-hidden"
+      className="relative pt-[1px] pb-20 md:pb-24 overflow-hidden"
     >
       {/* Glow gradient blobs */}
       <div className="absolute top-12 left-1/4 w-96 h-96 glow-brand rounded-full pointer-events-none -z-10 blur-3xl opacity-60 animate-glow-pulse" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-pink-500/10 rounded-full pointer-events-none -z-10 blur-3xl opacity-40 animate-glow-pulse" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      {/* Desktop & Tablet Full-Width Video - Placed 1px under navbar and above hero content */}
+      {/* add video file here */}
+      <div className="hidden md:block w-full mb-10 lg:mb-14">
+        <div className="relative w-full overflow-hidden bg-slate-950 aspect-video flex items-center justify-center">
+          {/* HTML5 Video Element with 100% Width & 100% Height */}
+          {/* add video file here: specify video source path or URL */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover block"
+          >
+            {/* add video file here */}
+            <source src="/assets/hero-video.mp4" type="video/mp4" />
+            <source src="/govind-tech-video.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-6 md:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative">
           
           {/* Left Hero Content - Higher z-index to stay crisp, fully legible, and interactive */}
@@ -999,14 +1019,15 @@ export function ContactSection({ selectedService }) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-base shadow-md cursor-pointer disabled:opacity-70 flex items-center justify-center gap-2 transition-colors duration-200"
+                    id="contact-form-submit-btn"
+                    className="w-full btn-contact-linear py-3.5 px-6 rounded-xl font-semibold text-base shadow-md cursor-pointer disabled:opacity-70 flex items-center justify-center gap-2 group transition-all duration-300"
                   >
                     {loading ? (
-                      <span>Sending Message...</span>
+                      <span className="relative z-10">Sending Message...</span>
                     ) : (
                       <>
-                        <span>Send Message</span>
-                        <ArrowRight className="w-4 h-4 ml-1" />
+                        <span className="relative z-10">Send Message</span>
+                        <ArrowRight className="w-4 h-4 ml-1 relative z-10 transition-transform duration-200 group-hover:translate-x-1" />
                       </>
                     )}
                   </button>
@@ -1041,11 +1062,26 @@ export function FooterSection({ onNavigate }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           
           {/* Brand Info */}
+          {/* add logo image here */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-baseline tracking-tight font-extrabold text-2xl text-white">
-              <span className="logo-gradient-animated tracking-tight font-black">
-                GOVIND TECH
-              </span>
+            <div className="flex items-center gap-3">
+              {/* add logo image here */}
+              <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center shrink-0">
+                {/* add logo image here */}
+                <img
+                  src="/favicon.png"
+                  alt="Govind Tech"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              </div>
+              <div className="flex items-baseline tracking-tight font-extrabold text-2xl text-white">
+                <span className="logo-gradient-animated tracking-tight font-black">
+                  GOVIND TECH
+                </span>
+              </div>
             </div>
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
               Building modern software, AI-powered solutions, and digital products that transform business ideas into scalable realities.

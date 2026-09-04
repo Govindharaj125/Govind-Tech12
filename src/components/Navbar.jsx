@@ -66,16 +66,24 @@ export default function Navbar({ activeSection, onNavigate }) {
     >
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Wordmark / Logo */}
+        {/* add logo image here */}
         <a
           href="#hero"
           onClick={(e) => handleLinkClick(e, "hero")}
           className="flex items-center gap-2.5 group cursor-pointer"
           id="navbar-brand-logo"
         >
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#2563EB] via-[#6366F1] to-[#EF4444] p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105">
-            <div className="w-full h-full bg-slate-900 rounded-[6px] flex items-center justify-center text-white">
-              <img src="/favicon.png" alt="Govind Tech" className="w-5 h-5 text-blue-400 group-hover:text-red-400 transition-colors" />
-            </div>
+          {/* add logo image here */}
+          <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center shrink-0">
+            {/* add logo image here */}
+            <img
+              src="/favicon.png"
+              alt="Govind Tech"
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
           </div>
           <div className="flex items-baseline tracking-tight font-extrabold text-xl">
             <span className="logo-gradient-animated tracking-tight font-black">
