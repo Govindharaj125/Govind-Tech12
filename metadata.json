@@ -1,0 +1,6 @@
+{
+  "name": "Govind Tech",
+  "description": "Govind Tech builds modern web applications, mobile apps, SaaS platforms, AI automation systems, CRM solutions, and custom software for businesses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
