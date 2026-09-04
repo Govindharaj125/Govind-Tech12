@@ -14,22 +14,21 @@ import {
   ContactSection,
   FooterSection
 } from "./components/Sections";
-import { ServiceModal, ProjectModal, CareerModal } from "./components/Modals";
+import { ServiceModal, CareerModal } from "./components/Modals";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("hero");
   const [activeServiceModal, setActiveServiceModal] = useState(null);
-  const [activeProjectModal, setActiveProjectModal] = useState(null);
   const [activeCareerModal, setActiveCareerModal] = useState(null);
   const [contactPreselectedService, setContactPreselectedService] = useState("");
 
-  // Smooth scroll handler
+  // Smooth scroll handler with comfortable gap from fixed navbar
   const handleNavigate = (id) => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
       try {
-        const yOffset = -76; // Navbar height offset
+        const yOffset = -96; // Generous gap offset from navbar so content never sticks
         const y = element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0) + yOffset;
         window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
       } catch {
@@ -77,6 +76,7 @@ export default function App() {
         <HeroSection
           onExploreServices={() => handleNavigate("services")}
           onViewProjects={() => handleNavigate("projects")}
+          onExploreInternships={() => handleNavigate("careers")}
         />
 
         {/* 3. Trust / What We Do Section */}
@@ -90,24 +90,22 @@ export default function App() {
         {/* 5. Built With Modern Technology */}
         <TechnologiesSection />
 
-        {/* 6. Selected Projects Section */}
-        <ProjectsSection
-          onOpenProject={(project) => setActiveProjectModal(project)}
-        />
+        {/* 6. Selected Projects Section (Display Only) */}
+        <ProjectsSection />
 
-        {/* 7. About Section (Values) */}
-        <AboutSection />
-
-        {/* 8. Why Govind Tech (6 Advantages) */}
+        {/* 7. Why Govind Tech (6 Advantages) */}
         <WhyUsSection />
 
-        {/* 9. Process Section (How We Build) */}
+        {/* 8. Process Section (How We Build) */}
         <ProcessSection />
 
-        {/* 10. Careers Section */}
+        {/* 9. Careers Section (Internship Program) */}
         <CareersSection
           onApplyRole={(role) => setActiveCareerModal(role)}
         />
+
+        {/* 10. About Section (Leadership Team & Core Values - Placed after Internship) */}
+        <AboutSection />
 
         {/* 11. Contact Section */}
         <ContactSection
@@ -126,17 +124,6 @@ export default function App() {
           onClose={() => setActiveServiceModal(null)}
           onSelectService={(serviceTitle) => {
             setContactPreselectedService(serviceTitle);
-            handleNavigate("contact");
-          }}
-        />
-      )}
-
-      {activeProjectModal && (
-        <ProjectModal
-          project={activeProjectModal}
-          onClose={() => setActiveProjectModal(null)}
-          onConsult={(projectName) => {
-            setContactPreselectedService(`Custom Build: Similar to ${projectName}`);
             handleNavigate("contact");
           }}
         />

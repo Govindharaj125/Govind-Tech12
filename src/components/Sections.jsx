@@ -30,7 +30,9 @@ import {
   CORE_VALUES,
   WHY_US_CARDS,
   PROCESS_STAGES,
-  CAREER_ROLES
+  CAREER_ROLES,
+  CONTACT_INFO,
+  LEADERSHIP_TEAM
 } from "../data";
 
 // Helper for mapping icon strings to Lucide components
@@ -73,7 +75,7 @@ export function WhyUsIcon({ name, className = "w-6 h-6" }) {
 }
 
 // 1. HERO SECTION
-export function HeroSection({ onExploreServices, onViewProjects }) {
+export function HeroSection({ onExploreServices, onViewProjects, onExploreInternships }) {
   return (
     <section
       id="hero"
@@ -131,22 +133,31 @@ export function HeroSection({ onExploreServices, onViewProjects }) {
             </p>
 
             {/* Hero CTAs: Unified Linear Gradient Border with Hover Fill */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5 pt-2">
               <button
                 id="hero-cta-services"
                 onClick={onExploreServices}
-                className="btn-linear-base btn-linear-brand px-7 py-3.5 text-base shadow-md group w-full sm:w-auto cursor-pointer"
+                className="btn-linear-base btn-linear-brand px-6 py-3.5 text-sm sm:text-base shadow-md group w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>Explore Services</span>
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </button>
 
               <button
                 id="hero-cta-projects"
                 onClick={onViewProjects}
-                className="btn-linear-base btn-linear-slate px-6 py-3.5 text-base shadow-xs w-full sm:w-auto cursor-pointer"
+                className="btn-linear-base btn-linear-slate px-5 py-3.5 text-sm sm:text-base shadow-xs w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>View Projects</span>
+              </button>
+
+              <button
+                id="hero-cta-internships"
+                onClick={onExploreInternships}
+                className="btn-linear-base btn-linear-pink px-5 py-3.5 text-sm sm:text-base shadow-xs w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2"
+              >
+                <span>Explore Internships</span>
+                <Sparkles className="w-4 h-4" />
               </button>
             </div>
 
@@ -207,7 +218,7 @@ export function TrustSection() {
 // 3. SERVICES SECTION
 export function ServicesSection({ onOpenService }) {
   return (
-    <section id="services" className="py-20 md:py-28 bg-[#F8FAFC]">
+    <section id="services" className="py-20 md:py-28 bg-[#F8FAFC] scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
@@ -352,7 +363,7 @@ export function TechnologiesSection() {
 }
 
 // 5. SELECTED PROJECTS SECTION
-export function ProjectsSection({ onOpenProject }) {
+export function ProjectsSection() {
   const [selectedTag, setSelectedTag] = useState("All");
 
   const tags = ["All", "SaaS", "AI", "CRM", "Automation", "Mobile Application", "Education", "Business"];
@@ -362,7 +373,7 @@ export function ProjectsSection({ onOpenProject }) {
     : PROJECTS.filter(p => p.category.includes(selectedTag) || p.tag === selectedTag);
 
   return (
-    <section id="projects" className="py-20 md:py-28 bg-[#F8FAFC]">
+    <section id="projects" className="py-20 md:py-28 bg-[#F8FAFC] scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -395,24 +406,23 @@ export function ProjectsSection({ onOpenProject }) {
           ))}
         </div>
 
-        {/* Project Cards Grid */}
+        {/* Project Cards Grid - Display Only, Not Clickable, Default Cursor */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
               id={`project-card-${project.id}`}
-              onClick={() => onOpenProject(project)}
-              className="group bg-white rounded-2xl overflow-hidden border border-blue-500 md:border-slate-200 shadow-xs hover:border-blue-500 card-anim mobile-blue-card flex flex-col justify-between cursor-pointer"
+              className="bg-white rounded-2xl overflow-hidden border border-blue-500 md:border-slate-200 shadow-xs card-anim mobile-blue-card flex flex-col justify-between cursor-default"
             >
               {/* Project Image */}
               <div className="relative h-48 w-full overflow-hidden bg-slate-900">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent opacity-60" />
                 
                 {/* Category Pill */}
                 <div className="absolute top-3.5 left-3.5">
@@ -425,7 +435,7 @@ export function ProjectsSection({ onOpenProject }) {
               {/* Project Details */}
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#2563EB] transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">
                     {project.name}
                   </h3>
                   <p className="text-slate-600 text-sm leading-relaxed mb-4">
@@ -435,14 +445,14 @@ export function ProjectsSection({ onOpenProject }) {
 
                 <div>
                   {/* Tech stack badge line */}
-                  <div className="py-2.5 px-3 rounded-lg bg-slate-50 border border-slate-100 text-xs font-mono text-slate-600 mb-4">
+                  <div className="py-2.5 px-3 rounded-lg bg-slate-50 border border-slate-100 text-xs font-mono text-slate-600 mb-3">
                     {project.tech}
                   </div>
 
-                  {/* CTA */}
-                  <div className="flex items-center justify-between text-sm font-semibold text-[#2563EB] group-hover:text-blue-700">
-                    <span>View Project Specifications</span>
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  {/* Clean Status Line */}
+                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500 pt-1">
+                    <span className="text-[#2563EB] font-bold">Featured Project</span>
+                    <span className="font-mono text-slate-400">Deployed & Active</span>
                   </div>
                 </div>
               </div>
@@ -458,8 +468,10 @@ export function ProjectsSection({ onOpenProject }) {
 // 6. ABOUT SECTION
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 md:py-28 bg-white border-y border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 md:py-28 bg-white border-y border-slate-200/80 scroll-mt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 lg:space-y-20">
+        
+        {/* Mission & Core Values Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-5 space-y-5">
@@ -479,7 +491,7 @@ export function AboutSection() {
 
           {/* 6 Core Values */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {CORE_VALUES.map((val, idx) => (
+            {CORE_VALUES.map((val) => (
               <div
                 key={val.name}
                 className="p-5 rounded-xl bg-[#F8FAFC] border border-blue-500 md:border-slate-200/90 hover:border-blue-400 hover:bg-white card-anim mobile-blue-card"
@@ -496,6 +508,89 @@ export function AboutSection() {
           </div>
 
         </div>
+
+        {/* 3 Well-Animated Leadership Cards */}
+        <div className="pt-8 border-t border-slate-100">
+          <div className="text-center max-w-2xl mx-auto mb-12 space-y-2.5">
+            <span className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+              Core Leadership & Management
+            </span>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+              Meet the Team Behind Govind Tech
+            </h3>
+            <p className="text-sm sm:text-base text-slate-600">
+              Experienced technology leaders committed to delivering engineering excellence and product reliability.
+            </p>
+          </div>
+
+          {/* 3 Cards Grid with Linear Gradient Border Animation & Box Shadow */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {LEADERSHIP_TEAM.map((member, idx) => (
+              <div
+                key={member.name}
+                className="team-animated-card group"
+              >
+                <div className="team-card-inner p-6 sm:p-7 flex flex-col justify-between">
+                  <div>
+                    {/* Role Pill with Linear Accent */}
+                    <div className="flex items-center justify-between gap-2 mb-5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-900 text-white shadow-xs">
+                        <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${member.tagColor} animate-pulse`} />
+                        {member.role}
+                      </span>
+                      <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                        {member.badge}
+                      </span>
+                    </div>
+
+                    {/* Member Name */}
+                    <h4 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
+                      {member.name}
+                    </h4>
+
+                    {/* Description */}
+                    <p className="text-xs text-slate-600 leading-relaxed mb-6">
+                      {member.description}
+                    </p>
+                  </div>
+
+                  {/* Contact Info Items */}
+                  <div className="space-y-3 pt-4 border-t border-slate-100">
+                    {/* Email Link */}
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="flex items-center gap-3 p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-slate-200/80 hover:border-blue-300 transition-all text-slate-700 hover:text-blue-600 group/link"
+                    >
+                      <div className="w-8 h-8 rounded-md bg-white text-blue-600 border border-blue-100 flex items-center justify-center shrink-0 shadow-xs group-hover/link:scale-105 transition-transform">
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-[10px] text-slate-500 uppercase font-semibold">Email</div>
+                        <div className="text-xs font-bold truncate">{member.email}</div>
+                      </div>
+                    </a>
+
+                    {/* Phone Link */}
+                    <a
+                      href={`tel:${member.phoneRaw}`}
+                      className="flex items-center gap-3 p-2.5 rounded-lg bg-slate-50 hover:bg-indigo-50 border border-slate-200/80 hover:border-indigo-300 transition-all text-slate-700 hover:text-indigo-600 group/link"
+                    >
+                      <div className="w-8 h-8 rounded-md bg-white text-indigo-600 border border-indigo-100 flex items-center justify-center shrink-0 shadow-xs group-hover/link:scale-105 transition-transform">
+                        <Phone className="w-4 h-4" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-[10px] text-slate-500 uppercase font-semibold">Phone</div>
+                        <div className="text-xs font-bold truncate">{member.phone}</div>
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -653,7 +748,7 @@ export function ProcessSection() {
 // 9. CAREERS SECTION
 export function CareersSection({ onApplyRole }) {
   return (
-    <section id="careers" className="py-20 md:py-28 bg-[#F8FAFC]">
+    <section id="careers" className="py-20 md:py-28 bg-[#F8FAFC] scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
@@ -826,7 +921,7 @@ export function ContactSection({ selectedService }) {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-white border-t border-slate-200 overflow-hidden relative">
+    <section id="contact" className="py-20 md:py-28 bg-white border-t border-slate-200 overflow-hidden relative scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -844,33 +939,61 @@ export function ContactSection({ selectedService }) {
             </p>
 
             <div className="space-y-4 pt-4">
-              <div className="flex items-center gap-3.5 text-slate-700">
-                <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                  <Mail className="w-5 h-5" />
+              {/* Primary Contact: Govind Tech */}
+              <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200/80 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-bold uppercase tracking-wider text-blue-700">
+                    Direct Inquiry • Govind Tech
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-slate-500">Email Inquiry</div>
-                  <div className="text-sm font-semibold">contact@govindtech.com</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <a
+                    href={`mailto:${CONTACT_INFO.primary.email}`}
+                    className="flex items-center gap-2.5 text-slate-700 hover:text-blue-600 transition-colors group text-sm"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-white border border-blue-200 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold truncate">{CONTACT_INFO.primary.email}</span>
+                  </a>
+                  <a
+                    href={`tel:${CONTACT_INFO.primary.phoneRaw}`}
+                    className="flex items-center gap-2.5 text-slate-700 hover:text-blue-600 transition-colors group text-sm"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-white border border-blue-200 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold">{CONTACT_INFO.primary.phone}</span>
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3.5 text-slate-700">
-                <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5" />
+              {/* Management Contact: Joel */}
+              <div className="p-4 rounded-xl bg-purple-50/70 border border-purple-200/80 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-bold uppercase tracking-wider text-purple-700 flex items-center gap-1.5">
+                    <span>Manager • {CONTACT_INFO.manager.name}</span>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-slate-500">Phone Support</div>
-                  <div className="text-sm font-semibold">+1 (800) 468-4638</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3.5 text-slate-700">
-                <div className="w-10 h-10 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-500">Headquarters</div>
-                  <div className="text-sm font-semibold">San Francisco, CA & Global Remote</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <a
+                    href={`mailto:${CONTACT_INFO.manager.email}`}
+                    className="flex items-center gap-2.5 text-slate-700 hover:text-purple-600 transition-colors group text-sm"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-white border border-purple-200 text-purple-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold truncate">{CONTACT_INFO.manager.email}</span>
+                  </a>
+                  <a
+                    href={`tel:${CONTACT_INFO.manager.phoneRaw}`}
+                    className="flex items-center gap-2.5 text-slate-700 hover:text-purple-600 transition-colors group text-sm"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-white border border-purple-200 text-purple-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold">{CONTACT_INFO.manager.phone}</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1192,19 +1315,33 @@ export function FooterSection({ onNavigate }) {
             <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
               Contact
             </h4>
-            <div className="footer-links-column flex flex-row flex-wrap items-center gap-x-4 gap-y-2 text-sm w-full md:flex-col md:items-start md:gap-2.5">
-              <span className="text-slate-300 block py-0.5">contact@govindtech.com</span>
-              <span className="footer-link-dot md:hidden text-slate-600">•</span>
-              <span className="text-slate-300 block py-0.5">+1 (800) 468-4638</span>
-              <span className="footer-link-dot md:hidden text-slate-600">•</span>
-              <span className="text-slate-400 text-xs block py-0.5">San Francisco, CA & Remote</span>
+            <div className="footer-links-column flex flex-col items-start gap-2.5 text-sm w-full">
+              <div>
+                <span className="text-xs text-slate-500 block uppercase font-medium">Direct Inquiry</span>
+                <a href={`mailto:${CONTACT_INFO.primary.email}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs truncate">
+                  {CONTACT_INFO.primary.email}
+                </a>
+                <a href={`tel:${CONTACT_INFO.primary.phoneRaw}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs">
+                  {CONTACT_INFO.primary.phone}
+                </a>
+              </div>
+
+              <div className="pt-1 border-t border-slate-800 w-full">
+                <span className="text-xs text-slate-500 block uppercase font-medium">Manager ({CONTACT_INFO.manager.name})</span>
+                <a href={`mailto:${CONTACT_INFO.manager.email}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs truncate">
+                  {CONTACT_INFO.manager.email}
+                </a>
+                <a href={`tel:${CONTACT_INFO.manager.phoneRaw}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs">
+                  {CONTACT_INFO.manager.phone}
+                </a>
+              </div>
               
               <div className="pt-2 flex flex-row items-center gap-3 flex-wrap w-full">
                 <a
                   href="https://github.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="footer-link-item text-slate-400 hover:text-white transition-colors block py-0.5"
+                  className="footer-link-item text-slate-400 hover:text-white transition-colors block py-0.5 text-xs"
                 >
                   GitHub
                 </a>
@@ -1213,18 +1350,9 @@ export function FooterSection({ onNavigate }) {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="footer-link-item text-slate-400 hover:text-white transition-colors block py-0.5"
+                  className="footer-link-item text-slate-400 hover:text-white transition-colors block py-0.5 text-xs"
                 >
                   LinkedIn
-                </a>
-                <span className="inline text-slate-600">•</span>
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="footer-link-item text-slate-400 hover:text-white transition-colors block py-0.5"
-                >
-                  X / Twitter
                 </a>
               </div>
             </div>

@@ -291,3 +291,53 @@ export const CAREER_ROLES = [
     desc: "Build cross-platform mobile apps for iOS and Android with smooth 60 FPS animations and production-ready architecture."
   }
 ];
+
+export const CONTACT_INFO = {
+  primary: {
+    name: "Govind Tech",
+    email: "govindtech125@gmail.com",
+    phone: "+91 96775 95861",
+    phoneRaw: "9677595861"
+  },
+  manager: {
+    name: "Joel Britto",
+    role: "Manager",
+    email: "joelbritto350@gmail.com",
+    phone: "+91 78451 63799",
+    phoneRaw: "7845163799"
+  }
+};
+
+export const LEADERSHIP_TEAM = [
+  {
+    role: "Founder",
+    name: "M. Govind",
+    email: "govindtech125@gmail.com",
+    phone: "+91 96775 95861",
+    phoneRaw: "9677595861",
+    badge: "Leadership & Architecture",
+    description: "Spearheading engineering vision, strategic technology roadmap, and high-performance product execution.",
+    tagColor: "from-blue-600 to-indigo-600"
+  },
+  {
+    role: "Manager",
+    name: "M. Joel",
+    email: "joelbritto350@gmail.com",
+    phone: "+91 78451 63799",
+    phoneRaw: "7845163799",
+    badge: "Operations & Delivery",
+    description: "Driving project orchestration, client alignment, delivery timelines, and scalable team operations.",
+    tagColor: "from-indigo-600 to-purple-600"
+  },
+  {
+    role: "Product Manager",
+    name: "Sundar Ayyapan",
+    email: "shunmugasundar07@gmail.com",
+    phone: "+91 90433 29690",
+    phoneRaw: "9043329690",
+    badge: "Product Strategy & Quality",
+    description: "Translating business requirements into intuitive UI/UX workflows, quality milestones, and product growth.",
+    tagColor: "from-pink-600 to-red-600"
+  }
+];
+
