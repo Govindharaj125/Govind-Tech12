@@ -1326,6 +1326,16 @@ export function FooterSection({ onNavigate }) {
                 </a>
               </div>
 
+               <div>
+                <span className="text-xs text-slate-500 block uppercase font-medium">PORDUCT MANAGER</span>
+                <a href={`mailto:${CONTACT_INFO.pro.email}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs truncate">
+                  {CONTACT_INFO.pro.email}
+                </a>
+                <a href={`tel:${CONTACT_INFO.pro.phoneRaw}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs">
+                  {CONTACT_INFO.pro.phone}
+                </a>
+              </div>
+
               <div className="pt-1 border-t border-slate-800 w-full">
                 <span className="text-xs text-slate-500 block uppercase font-medium">Manager ({CONTACT_INFO.manager.name})</span>
                 <a href={`mailto:${CONTACT_INFO.manager.email}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs truncate">

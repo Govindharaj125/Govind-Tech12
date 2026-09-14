@@ -305,6 +305,12 @@ export const CONTACT_INFO = {
     email: "joelbritto350@gmail.com",
     phone: "+91 78451 63799",
     phoneRaw: "7845163799"
+  },
+  pro:{
+    name:"Sundar Ayyapan",
+    email: "shunmugasundar07@gmail.com",
+    phone: "+91 90433 29690",
+    phoneRaw: "9043329690"
   }
 };
 
