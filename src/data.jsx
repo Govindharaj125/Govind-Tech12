@@ -306,8 +306,9 @@ export const CONTACT_INFO = {
     phone: "+91 78451 63799",
     phoneRaw: "7845163799"
   },
-  pro:{
-    name:"Sundar Ayyapan",
+  pro: {
+    name: "Sundar Ayyapan",
+    role: "Product Manager",
     email: "shunmugasundar07@gmail.com",
     phone: "+91 90433 29690",
     phoneRaw: "9043329690"

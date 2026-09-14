@@ -996,6 +996,35 @@ export function ContactSection({ selectedService }) {
                   </a>
                 </div>
               </div>
+
+              {/* Product Manager Contact: Sundar Ayyapan */}
+              <div className="p-4 rounded-xl bg-pink-50/70 border border-pink-200/80 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-bold uppercase tracking-wider text-pink-700 flex items-center gap-1.5">
+                    <span>Product Manager • {CONTACT_INFO.pro.name}</span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <a
+                    href={`mailto:${CONTACT_INFO.pro.email}`}
+                    className="flex items-center gap-2.5 text-slate-700 hover:text-pink-600 transition-colors group text-sm"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-white border border-pink-200 text-pink-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold truncate">{CONTACT_INFO.pro.email}</span>
+                  </a>
+                  <a
+                    href={`tel:${CONTACT_INFO.pro.phoneRaw}`}
+                    className="flex items-center gap-2.5 text-slate-700 hover:text-pink-600 transition-colors group text-sm"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-white border border-pink-200 text-pink-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold">{CONTACT_INFO.pro.phone}</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className="p-5 rounded-xl bg-slate-50 border border-blue-500 md:border-slate-200 space-y-2 card-anim mobile-blue-card">
@@ -1326,8 +1355,8 @@ export function FooterSection({ onNavigate }) {
                 </a>
               </div>
 
-               <div>
-                <span className="text-xs text-slate-500 block uppercase font-medium">PORDUCT MANAGER</span>
+              <div className="pt-1 border-t border-slate-800 w-full">
+                <span className="text-xs text-slate-500 block uppercase font-medium">Product Manager ({CONTACT_INFO.pro.name})</span>
                 <a href={`mailto:${CONTACT_INFO.pro.email}`} className="text-slate-300 hover:text-white transition-colors block py-0.5 text-xs truncate">
                   {CONTACT_INFO.pro.email}
                 </a>
