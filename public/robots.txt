@@ -1,0 +1,5 @@
+# Robots.txt for Govind Tech
+User-agent: *
+Allow: /
+
+Sitemap: https://govind-tech125.vercel.app/sitemap.xml

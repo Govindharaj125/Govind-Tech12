@@ -20,7 +20,8 @@ import {
   ExternalLink,
   ChevronRight,
   GraduationCap,
-  Award
+  Award,
+  Star
 } from "lucide-react";
 import Hero3DCanvas from "./Hero3DCanvas";
 import {
@@ -110,12 +111,27 @@ export function HeroSection({ onExploreServices, onViewProjects, onExploreIntern
           
           {/* Left Hero Content - Higher z-index to stay crisp, fully legible, and interactive */}
           <div className="lg:col-span-6 space-y-7 text-left relative z-10">
-            {/* Small Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 shadow-xs backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#2563EB] to-[#EC4899] animate-pulse" />
-              <span className="text-xs font-semibold tracking-wider text-slate-800 uppercase">
-                GOVIND TECH • NEXT-GEN ENGINEERING
-              </span>
+            {/* Small Badges: Brand + 5-Star Rating */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/90 shadow-xs backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-gradient-to-r from-[#2563EB] to-[#EC4899] animate-pulse" />
+                <span className="text-xs font-semibold tracking-wider text-slate-800 uppercase">
+                  GOVIND TECH • NEXT-GEN ENGINEERING
+                </span>
+              </div>
+
+              {/* 5.0 Star Rating Badge */}
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200/80 shadow-xs">
+                <div className="flex items-center text-amber-500">
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                </div>
+                <span className="text-xs font-bold text-amber-900">5.0 / 5.0</span>
+                <span className="text-[11px] text-amber-700 hidden sm:inline">(Top Rated)</span>
+              </div>
             </div>
 
             {/* Main Headline with 45-Degree Pink Linear Gradient on Main Content */}
@@ -164,12 +180,15 @@ export function HeroSection({ onExploreServices, onViewProjects, onExploreIntern
             {/* Micro-metrics under CTA */}
             <div className="pt-4 border-t border-slate-200/80 grid grid-cols-3 gap-4 max-w-md bg-white/70 lg:bg-transparent backdrop-blur-xs lg:backdrop-blur-none p-3 lg:p-0 rounded-xl lg:rounded-none">
               <div>
-                <div className="text-2xl font-bold text-slate-900">100%</div>
-                <div className="text-xs text-slate-500 mt-0.5">Production-Ready</div>
+                <div className="text-2xl font-bold text-slate-900 flex items-center gap-1">
+                  <span>5.0</span>
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-500 inline" />
+                </div>
+                <div className="text-xs text-slate-500 mt-0.5">Top Client Rating</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-[#2563EB]">AI & Cloud</div>
-                <div className="text-xs text-slate-500 mt-0.5">Native Architectures</div>
+                <div className="text-2xl font-bold text-[#2563EB]">100%</div>
+                <div className="text-xs text-slate-500 mt-0.5">Delivery Success</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-slate-900">Zero-Lag</div>
